@@ -1,0 +1,17 @@
+/* CSS for the bounce animation */
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Applying the animation to the button */
+button {
+  animation: bounce 1s ease infinite;
+}

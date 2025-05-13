@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS3 Animations and JavaScript</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    
+    /* Button styles */
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    button:hover {
+      background-color: #007BFF;
+      color: white;
+    }
+
+    /* Bounce animation */
+    @keyframes bounce {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    /* Applied animation */
+    .animate {
+      animation: bounce 0.5s ease;
+    }
+
+    /* Dark theme */
+    .dark-theme {
+      background-color: #333;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <button>Click Me!</button>
+  
+  <script>
+    // Function to trigger the animation and save the theme
+    document.querySelector('button').addEventListener('click', () => {
+      const button = document.querySelector('button');
+      button.classList.add('animate');
+
+      // Trigger the theme preference saving (dark or light)
+      savePreference();
+
+      button.addEventListener('animationend', () => {
+        button.classList.remove('animate');
+      });
+    });
+
+    // Save user theme preference
+    function savePreference() {
+      const theme = 'dark-theme'; // You can replace with logic to toggle between themes
+      localStorage.setItem('userTheme', theme);
+      document.body.classList.add(theme);
+    }
+
+    // Load saved theme preference from localStorage
+    function loadPreference() {
+      const savedTheme = localStorage.getItem('userTheme');
+      if (savedTheme) {
+        document.body.classList.add(savedTheme);
+      }
+    }
+
+    // Load preference when the page loads
+    window.onload = loadPreference;
+  </script>
+
+</body>
+</html>
